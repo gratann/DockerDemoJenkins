@@ -7,6 +7,13 @@ pipeline {
     }
 
     stages {
+        stage('Clone Repo') {
+            steps {
+                echo "📥 Cloning repo..."
+                // This happens automatically when using Pipeline from SCM
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 echo "🐳 Building image..."
@@ -24,10 +31,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Deployed successfully."
+            echo "✅ Deployment succeeded."
         }
         failure {
-            echo "❌ Something went wrong."
+            echo "❌ Build failed."
         }
     }
 }
