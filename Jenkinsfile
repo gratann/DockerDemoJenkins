@@ -24,7 +24,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 echo "🚀 Running container..."
-                bat "docker run -d --rm -p 8080:80 --name demo_container ${IMAGE_NAME}:${IMAGE_TAG}"
+                bat "docker run -d --rm -p 8081:80 --name demo_container ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
     }
