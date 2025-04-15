@@ -10,21 +10,21 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 echo "📥 Cloning repo..."
-                // This happens automatically when using Pipeline from SCM
+                checkout scm  // Automatically clones the repository
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 echo "🐳 Building image..."
-                bat "docker build -t %IMAGE_NAME%:%IMAGE_TAG% ."
+                bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
             }
         }
 
         stage('Run Docker Container') {
             steps {
                 echo "🚀 Running container..."
-                bat "docker run -d --rm -p 8080:80 --name demo_container %IMAGE_NAME%:%IMAGE_TAG%"
+                bat "docker run -d --rm -p 8080:80 --name demo_container ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
     }
